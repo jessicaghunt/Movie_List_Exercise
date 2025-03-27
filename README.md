@@ -9,7 +9,7 @@
 ``` npm create vite@latest filename ``` <br />
 ``` npm run dev ``` <br />
 
--Backend <br />
+- Backend <br />
 ``` npm install --save-dev nodemon ``` <br />
 ``` docker run --name pg-movies -e POSTGRES_USER=myuser -e POSTGRES_PASSWORD=mypassword -e POSTGRES_DB=(databasename) -p 5432:5432 -d postgres ``` <br />
 
