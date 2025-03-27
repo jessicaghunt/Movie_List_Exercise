@@ -6,6 +6,7 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0);
   const [movies, setMovies] = useState([]);
+  const [searchMovie, setSearchMovie] = useState('');
   // const movie = [
   // {title: 'Mean Girls'},
   // {title: 'Hackers'},
@@ -19,9 +20,36 @@ function App() {
       .then((res) => res.json())
       .then((data) => setMovies(data));
   }, []);
+ 
+  // Filter movies based on the search term
+  const filteredMovies = movies.filter((movie) =>
+    movie.title.toLowerCase().includes(searchMovie.toLowerCase())
+  );
+
+  // Handle search input change
+  const handleSearchChange = (event) => {
+    setSearchMovie(event.target.value);
+  };
 
   return (
     <>
+    <div className="search-bar">
+      <input
+      type="text" placeholder='Lookup movie' value ={searchMovie} onChange={handleSearchChange} />
+
+<h2>Movie Results</h2>
+<ol>
+          {filteredMovies.length > 0 ? (
+            filteredMovies.map((movie) => (
+              <li key={movie.id}>{movie.title}</li> 
+            ))
+          ) : (
+            <p>No movies found</p> 
+          )};
+
+
+        </ol>
+    </div>
       <div>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
